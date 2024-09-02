@@ -1,0 +1,16 @@
+name = "esp32s3_hal"
+description = "Ada hardware abstraction layer for the Espressif's esp32-s3 SoC"
+version = "0.1.0-dev"
+
+authors = ["Ron Tessler"]
+maintainers-logins = ["joebeazelman"]
+website = ""
+tags = ["esp32s3", "espressif", "xtensa", "esp32"]
+
+[[depends-on]]
+gnat_xtensa_esp32_elf = "^14"
+hal = "~0.3"
+
+[configuration.variables]
+Startup_Script_Dir = {type = "String", default = "startup" }
+Linker_Script_Path = {type = "String", default = "ld/bootloader.ld"}
