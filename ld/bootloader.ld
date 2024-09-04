@@ -18,7 +18,7 @@ ENTRY(_reset)
 
 SECTIONS {
   /* .vectors  : { KEEP(*(.vectors))   } > iram */
-  .text     : { *(.text*) *(.text)  } > iram
+  .text     : { *(.literal .text .literal.* .text*) } > iram
 
   .data : {
     . = ALIGN(4);
