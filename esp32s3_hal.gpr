@@ -49,7 +49,7 @@ library project Esp32s3_Hal is
    end Install;
 
    package Linker is
-      Options := ("-Wl", "--no-warn-rwx-segments", "--no-warn-execstack", "-nostdlib", "-nostartfiles", "-Wl","--gc-sections", "-nodefaultlibs");
+      Options := ("-Wl,--no-warn-rwx-segments", "-Wl,--no-warn-execstack", "-Wl,-nostdlib", "-Wl,--gc-sections");
       case Esp32s3_Hal_Config.Linker_Script_Path is
          when "" => 
             null;
