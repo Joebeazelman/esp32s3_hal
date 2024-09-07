@@ -9,8 +9,12 @@ tags = ["esp32s3", "espressif", "xtensa", "esp32"]
 
 [[depends-on]]
 gnat_xtensa_esp32_elf = "^14"
+light_xtensa_esp = "*"
 hal = "~0.3"
 
 [configuration.variables]
 Startup_Script_Dir = {type = "String", default = "startup" }
 Linker_Script_Path = {type = "String", default = "ld/bootloader.ld"}
+
+[[pins]]
+light_xtensa_esp = { path='../light_xtensa_esp' }
