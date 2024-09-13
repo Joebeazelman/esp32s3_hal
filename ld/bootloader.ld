@@ -54,7 +54,7 @@ SECTIONS {
 
 /* See .ld files in $IDF_PATH/components/esp_rom */
 PROVIDE(uart_rx_one_char = 0x400092d0);
-PROVIDE(uart_tx_one_char = 0x40009200);
+PROVIDE(putchar = 0x40009200);
 PROVIDE(memchr = 0x4000c244);
 PROVIDE(memcmp = 0x4000c260);
 PROVIDE(memcpy = 0x4000c2c8);
@@ -86,3 +86,4 @@ PROVIDE(strstr = 0x4000c674);
 PROVIDE(strtol = 0x4005681c);
 
 PROVIDE ( printf = 0x40007d54 );
+PROVIDE (exit = 0x400006e4);
