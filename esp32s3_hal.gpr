@@ -35,6 +35,11 @@ library project Esp32s3_Hal is
       "-nostdlib"
    );
 
+   Linker_Switches := ("-Wl,--no-warn-rwx-segments", "-Wl,--no-warn-execstack", 
+      "-nostdlib", "-Wl,--gc-sections", "-mlongcalls", "-mtext-section-literals",
+      "-fstrict-volatile-bitfields", "-Wl,-Map=$@.map", "-Wl,--cref"
+   );
+
    package Compiler is
       for Default_Switches ("Ada") use Ada_Compiler_Switches;
       for Default_Switches ("C") use C_Compiler_Switches;
@@ -49,14 +54,13 @@ library project Esp32s3_Hal is
    end Install;
 
    package Linker is
-      Options := ("-Wl,--no-warn-rwx-segments", "-Wl,--no-warn-execstack", "-Wl,-nostdlib", "-Wl,--gc-sections");
       case Esp32s3_Hal_Config.Linker_Script_Path is
          when "" => 
             null;
          when others => 
-            Options := Options & ("-T" & Project'Project_Dir & Esp32s3_Hal_Config.Linker_Script_Path);
+            Linker_Switches := Linker_Switches & ("-T" & Project'Project_Dir & Esp32s3_Hal_Config.Linker_Script_Path);
       end case;
-      for Switches ("C") use Options;
+      for Switches ("C") use Linker_Switches;
    end Linker;
 
    package Pretty_Printer is
